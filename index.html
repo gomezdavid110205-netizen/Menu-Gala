@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú Digital - Fresas & Pastes</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            berry: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              500: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+            },
+            cream: {
+              50: '#fdfbf7',
+              100: '#f7f3eb',
+              200: '#eee5d3',
+              800: '#4a4336',
+            },
+            pastry: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              800: '#92400e',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Transiciones suaves para los filtros */
+    .menu-section {
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .hide-section {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .show-section {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-cream-50 text-stone-800 font-sans min-h-screen flex flex-col">
+
+  <!-- ENCABEZADO Y LOGO -->
+  <header class="relative bg-gradient-to-b from-berry-900 to-berry-800 text-white pt-8 pb-10 px-4 text-center rounded-b-[2.5rem] shadow-xl">
+    <div class="max-w-4xl mx-auto flex flex-col items-center">
+      
+      <!-- Logo Contenedor -->
+      <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-cream-50 border-4 border-pastry-500 shadow-2xl flex items-center justify-center p-2 mb-4 overflow-hidden transform hover:scale-105 transition duration-300">
+        <img 
+          src="logo pra fondo claro@3x.png" 
+          alt="Logo de la Marca" 
+          class="w-full h-full object-cover rounded-full"
+          onerror="this.onerror=null; this.src='https://placehold.co/200x200/9f1239/ffffff?text=Gala+Berries';"
+        />
+      </div>
+
+      <!-- Título de la marca y eslogan -->
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-wide text-cream-50 mb-1">
+        Gala Berries
+      </h1>
+      <p class="text-pastry-400 font-medium italic text-sm sm:text-base">
+        "Horneamos recuerdos, creamos momentos"
+      </p>
+
+      <!-- Divisor decorativo -->
+      <div class="flex items-center justify-center space-x-2 my-4 opacity-80">
+        <span class="h-0.5 w-12 bg-pastry-400"></span>
+        <span class="text-pastry-400 text-xs">🍓 🥟 📍</span>
+        <span class="h-0.5 w-12 bg-pastry-400"></span>
+      </div>
+
+      <p class="text-xs sm:text-sm text-cream-200 max-w-md mb-6">
+        Consulta nuestra variedad de postres y pastes ¡encuentra tu sucursal más cercana!
+      </p>
+
+      <!-- BOTONES DE REDES SOCIALES Y DELIVERY (DIDI) -->
+      <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-lg">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/galaberries_mx?dlrf=bWNjMzhpdTE0dG8z" target="_blank" rel="noopener noreferrer" 
+           class="flex items-center gap-2 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 hover:opacity-90 text-white text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-xl shadow-md transform hover:-translate-y-0.5 transition duration-200">
+          <i class="fa-brands fa-instagram text-base"></i>
+          <span>Instagram</span>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@galaberries_mx?_r=1&_t=ZS-9AvFZ4pSro7" target="_blank" rel="noopener noreferrer" 
+           class="flex items-center gap-2 bg-black hover:bg-stone-900 text-white text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-xl shadow-md transform hover:-translate-y-0.5 transition duration-200">
+          <i class="fa-brands fa-tiktok text-base"></i>
+          <span>TikTok</span>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/1Hj644gPpE/" target="_blank" rel="noopener noreferrer" 
+           class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-xl shadow-md transform hover:-translate-y-0.5 transition duration-200">
+          <i class="fa-brands fa-facebook-f text-base"></i>
+          <span>Facebook</span>
+        </a>
+
+        <!-- DiDi Food (Hacer Pedido) -->
+        <a href="https://oia.didiglobal.com/dlp/0FEMsY" target="_blank" rel="noopener noreferrer" 
+           class="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-stone-900 text-xs sm:text-sm font-bold py-2.5 px-4 rounded-xl shadow-lg transform hover:-translate-y-0.5 transition duration-200 ring-2 ring-amber-300">
+          <i class="fa-solid fa-motorcycle text-base"></i>
+          <span>Pedir en DiDi</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN DE CATEGORÍAS -->
+  <nav class="max-w-4xl mx-auto w-full px-4 -mt-6 z-10">
+    <div class="bg-white rounded-2xl p-2 shadow-lg border border-cream-200 grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2 text-center">
+      <button 
+        onclick="switchTab('frutas')" 
+        id="btn-frutas"
+        class="tab-btn py-3 px-2 sm:px-3 rounded-xl font-semibold text-xs sm:text-sm text-center transition-all duration-200 bg-berry-700 text-white shadow-md">
+        🍓 Frutas
+      </button>
+      <button 
+        onclick="switchTab('pastes')" 
+        id="btn-pastes"
+        class="tab-btn py-3 px-2 sm:px-3 rounded-xl font-semibold text-xs sm:text-sm text-center transition-all duration-200 text-stone-600 hover:bg-cream-100">
+        🥟 Pastes
+      </button>
+      <button 
+        onclick="switchTab('algo-mas')" 
+        id="btn-algo-mas"
+        class="tab-btn py-3 px-2 sm:px-3 rounded-xl font-semibold text-xs sm:text-sm text-center transition-all duration-200 text-stone-600 hover:bg-cream-100">
+        🥤 Algo Más
+      </button>
+      <button 
+        onclick="switchTab('sucursales')" 
+        id="btn-sucursales"
+        class="tab-btn py-3 px-2 sm:px-3 rounded-xl font-semibold text-xs sm:text-sm text-center transition-all duration-200 text-stone-600 hover:bg-cream-100 flex items-center justify-center gap-1">
+        📍 Sucursales
+      </button>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO DEL MENÚ -->
+  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
+
+    <!-- ==================== SECCIÓN 1: FRUTAS CON CREMA ==================== -->
+    <section id="sec-frutas" class="menu-section show-section space-y-12">
+      
+      <!-- SUB-CATEGORÍA: CLÁSICAS -->
+      <div>
+        <div class="border-b-2 border-berry-100 pb-3 mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-berry-800">Frutas con crema Clásicas</h2>
+          </div>
+          <span class="bg-berry-100 text-berry-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Clásicas</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- ITEM: Fresas con Crema -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="AFresas .png" 
+                  alt="Fresas con crema" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/ffe4e6/9f1239?text=Fresas+con+Crema';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Fresas con Crema</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Deliciosas fresas frescas bañadas en nuestra crema secreta, con chocolate y el topping de tu elección.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto">
+              <div class="flex justify-between items-center text-xs font-semibold pt-3">
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 mr-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Chico</span>
+                  <span class="text-sm text-berry-800 font-bold">$75</span>
+                </div>
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 ml-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Grande</span>
+                  <span class="text-sm text-berry-800 font-bold">$95</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITEM: Duraznos con Crema -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="BDuraznos .png" 
+                  alt="Duraznos con crema" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/ffe4e6/9f1239?text=Duraznos+con+Crema';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Duraznos con Crema</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Jugosos duraznos en almíbar cortados en cubos bañados en nuestra crema secreta, con chocolate y el topping de tu elección.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto">
+              <div class="flex justify-between items-center text-xs font-semibold pt-3">
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 mr-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Chico</span>
+                  <span class="text-sm text-berry-800 font-bold">$75</span>
+                </div>
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 ml-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Grande</span>
+                  <span class="text-sm text-berry-800 font-bold">$95</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITEM: Uvas con Crema -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="CUvas.png" 
+                  alt="Uvas con crema" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/ffe4e6/9f1239?text=Uvas+con+Crema';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Uvas con Crema</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Uvas verdes crujientes bañadas en nuestra crema secreta, con chocolate y el topping de tu elección.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto">
+              <div class="flex justify-between items-center text-xs font-semibold pt-3">
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 mr-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Chico</span>
+                  <span class="text-sm text-berry-800 font-bold">$75</span>
+                </div>
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 ml-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Grande</span>
+                  <span class="text-sm text-berry-800 font-bold">$95</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITEM: Combinados -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="Dconvinado.png" 
+                  alt="Frutas Combinadas" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/ffe4e6/9f1239?text=Combinados';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Combinados</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Mezcla tu fruta favorita (fresas, duraznos y uvas) con la crema secreta, chocolate y el topping de tu preferencia.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto">
+              <div class="flex justify-between items-center text-xs font-semibold pt-3">
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 mr-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Chico</span>
+                  <span class="text-sm text-berry-800 font-bold">$75</span>
+                </div>
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 ml-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Grande</span>
+                  <span class="text-sm text-berry-800 font-bold">$95</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SUB-CATEGORÍA: ESPECIALES -->
+      <div>
+        <div class="border-b-2 border-pastry-500/30 pb-3 mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-berry-900">Frutas Especiales</h2>
+            <p class="text-xs sm:text-sm text-stone-500">Combinaciones especiales con toppings premium</p>
+          </div>
+          <span class="bg-pastry-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Favoritos</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- ITEM: Ferrero Berries -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="FERRERO.png" 
+                  alt="Ferrero Berries" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/ffe4e6/9f1239?text=Ferrero+Berries';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Ferrero Berries</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Fresas, duraznos o uvas con crema dulce, chocolate líquido y topping de Ferrero Rocher.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto">
+              <div class="flex justify-between items-center text-xs font-semibold pt-3">
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 mr-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Chico</span>
+                  <span class="text-sm text-berry-800 font-bold">$90</span>
+                </div>
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 ml-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Grande</span>
+                  <span class="text-sm text-berry-800 font-bold">$110</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITEM: Cheesecake Berries -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="CHEESEKAKE.png" 
+                  alt="Cheesecake Berries" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/ffe4e6/9f1239?text=Cheesecake+Berries';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Cheesecake Berries</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Fresas, duraznos o uvas con crema dulce, chocolate líquido y topping de cheesecake.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto">
+              <div class="flex justify-between items-center text-xs font-semibold pt-3">
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 mr-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Chico</span>
+                  <span class="text-sm text-berry-800 font-bold">$90</span>
+                </div>
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 ml-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Grande</span>
+                  <span class="text-sm text-berry-800 font-bold">$110</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITEM: Kínder Berries -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="KINDER.png" 
+                  alt="Kínder Berries" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/ffe4e6/9f1239?text=Kinder+Berries';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Kínder Berries</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Fresas, duraznos o uvas con crema dulce, chocolate líquido y Kinder Bueno.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto">
+              <div class="flex justify-between items-center text-xs font-semibold pt-3">
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 mr-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Chico</span>
+                  <span class="text-sm text-berry-800 font-bold">$90</span>
+                </div>
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 ml-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Grande</span>
+                  <span class="text-sm text-berry-800 font-bold">$110</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITEM: Nutella Berries -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="NUTELLA.png" 
+                  alt="Nutella Berries" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/ffe4e6/9f1239?text=Nutella+Berries';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Nutella Berries</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Fresas, duraznos o uvas con crema dulce, chocolate líquido y un generoso extra de Nutella.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto">
+              <div class="flex justify-between items-center text-xs font-semibold pt-3">
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 mr-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Chico</span>
+                  <span class="text-sm text-berry-800 font-bold">$90</span>
+                </div>
+                <div class="bg-cream-100 text-cream-800 px-3 py-1.5 rounded-lg border border-cream-200 text-center flex-1 ml-1">
+                  <span class="block text-[10px] text-stone-400 font-normal">Grande</span>
+                  <span class="text-sm text-berry-800 font-bold">$110</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== SECCIÓN 2: PASTES ==================== -->
+    <section id="sec-pastes" class="menu-section hide-section space-y-12">
+      
+      <!-- PASTES SALADOS -->
+      <div>
+        <div class="border-b-2 border-pastry-500/30 pb-3 mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-pastry-800">Pastes Salados</h2>
+            <p class="text-xs sm:text-sm text-stone-500">Masa hojaldrada crujiente y deliciosa</p>
+          </div>
+          <span class="bg-pastry-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider"></span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Mole -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="mole.jpg" 
+                  alt="Paste Mole" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/f59e0b/ffffff?text=Papa+con+Carne';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Mole</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">El clasico mancha manteles con pollo deshebrado</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto flex justify-between items-center">
+              <span class="text-xs text-stone-400 font-medium">Pieza</span>
+              <span class="text-lg font-bold text-pastry-800">$25 c/u</span>
+            </div>
+          </div>
+
+          <!-- salsa bolognesa -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="bolog.jpg" 
+                  alt="Paste bolognesa" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/f59e0b/ffffff?text=Tinga+de+Pollo';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Tinga de Pollo</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">carne molida con la autentica salsa bolognesa.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto flex justify-between items-center">
+              <span class="text-xs text-stone-400 font-medium">Pieza</span>
+              <span class="text-lg font-bold text-pastry-800">$25 c/u</span>
+            </div>
+          </div>
+
+          <!-- Paste 3 quesos  -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="3q.jpg" 
+                  alt="3 quesos" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/f59e0b/ffffff?text=Frijol+con+Queso';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">tres quesos</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">mezcla esquisita de 3 quesos.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto flex justify-between items-center">
+              <span class="text-xs text-stone-400 font-medium">Pieza</span>
+              <span class="text-lg font-bold text-pastry-800">$25 c/u</span>
+            </div>
+          </div>
+
+          <!-- hawallana  -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="haw.jpg" 
+                  alt="Paste hawallana" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/f59e0b/ffffff?text=Mole+con+Pollo';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">hawallana</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Delicioso relleno de queso con jamon.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto flex justify-between items-center">
+              <span class="text-xs text-stone-400 font-medium">Pieza</span>
+              <span class="text-lg font-bold text-pastry-800">$25 c/u</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PASTES DULCES -->
+      <div>
+        <div class="border-b-2 border-pastry-500/30 pb-3 mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-pastry-800">Pastes Dulces</h2>
+            <p class="text-xs sm:text-sm text-stone-500">Perfectos para acompañar con un buen café</p>
+          </div>
+          <span class="bg-cream-200 text-pastry-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Postre</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Paste Arroz con Leche -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="arroz cl.jpg" 
+                  alt="Paste Arroz con Leche" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/f59e0b/ffffff?text=Arroz+con+Leche';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Arroz con Leche</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Relleno suave de arroz cremoso perfumado con canela</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto flex justify-between items-center">
+              <span class="text-xs text-stone-400 font-medium">Pieza</span>
+              <span class="text-lg font-bold text-pastry-800">$25 c/u</span>
+            </div>
+          </div>
+
+          <!-- Paste Manzana -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="mz can.jpg" 
+                  alt="Paste Manzana" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/f59e0b/ffffff?text=Paste+Manzana';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Manzana Canela</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Trozos de manzana especiada horneados al estilo pie de manzana tradicional.</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto flex justify-between items-center">
+              <span class="text-xs text-stone-400 font-medium">Pieza</span>
+              <span class="text-lg font-bold text-pastry-800">$25 c/u</span>
+            </div>
+          </div>
+
+          <!-- zarzamora -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div>
+              <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+                <img 
+                  src="zarza.jpg" 
+                  alt="Paste Piña" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/300x400/f59e0b/ffffff?text=Paste+Pi%C3%B1a';"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Zarzamora</h3>
+                <p class="text-xs text-stone-500 leading-relaxed mb-4">Relleno dulce de zarzamoras</p>
+              </div>
+            </div>
+            <div class="p-4 pt-0 border-t border-stone-50 mt-auto flex justify-between items-center">
+              <span class="text-xs text-stone-400 font-medium">Pieza</span>
+              <span class="text-lg font-bold text-pastry-800">$25 c/u</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+   <!-- ==================== SECCIÓN 3: ALGO MÁS ==================== -->
+    <section id="sec-algo-mas" class="menu-section hide-section space-y-8">
+      <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-100 text-center max-w-xl mx-auto">
+        <h2 class="font-serif text-2xl font-bold text-stone-800 mb-2">Bebidas y Complementos</h2>
+        <p class="text-stone-500 text-sm">Disfruta de un antojo extra para acompañar tu día.</p>
+      </div>
+
+      <!-- Cuadrícula para alinear las tarjetas de forma idéntica al resto del menú -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Muffin de chocolate -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+          <div>
+            <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+              <img 
+                src="muffin.jpg" 
+                alt="panque de chocolate" 
+                class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.src='https://placehold.co/300x400/f59e0b/ffffff?text=Muffin';"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Muffin de chocolate</h3>
+              <p class="text-xs text-stone-500 leading-relaxed mb-4">Delicioso muffin de chocolate con chips de chocolate.</p>
+            </div>
+          </div>
+          <div class="p-4 pt-0 border-t border-stone-50 mt-auto flex justify-between items-center">
+            <span class="text-xs text-stone-400 font-medium">Pieza</span>
+            <span class="text-lg font-bold text-pastry-800">$25 c/u</span>
+          </div>
+        </div>
+
+        <!-- Pizza individual -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
+          <div>
+            <div class="aspect-[3/4] w-full overflow-hidden bg-stone-100 relative">
+              <img 
+                src="pizza.jpg" 
+                alt="pizza" 
+                class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.src='https://placehold.co/300x400/f59e0b/ffffff?text=Pizza';"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="font-serif text-lg font-bold text-stone-800 mb-1">Pizza individual</h3>
+              <p class="text-xs text-stone-500 leading-relaxed mb-4">Deliciosa y calientita pizza individual.</p>
+            </div>
+          </div>
+          <div class="p-4 pt-0 border-t border-stone-50 mt-auto flex justify-between items-center">
+            <span class="text-xs text-stone-400 font-medium">Pieza</span>
+            <span class="text-lg font-bold text-pastry-800">$50 c/u</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECCIÓN 4: SUCURSALES ==================== -->
+    <section id="sec-sucursales" class="menu-section hide-section space-y-8">
+      <div class="text-center max-w-xl mx-auto mb-6">
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-berry-900 mb-2">Nuestras Sucursales</h2>
+        <p class="text-stone-500 text-sm">Visítanos o pide a domicilio en cualquiera de nuestras tres sucursales.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- SUCURSAL 1 -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col">
+          <div class="p-5 flex-grow">
+            <h3 class="font-serif text-xl font-bold text-berry-800 mb-2">Sucursal Portland (Col. Cospus Christi)</h3>
+            <p class="text-xs sm:text-sm text-stone-600 mb-3 flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-berry-700 mt-1"></i>
+              <span>Calle Portland #21 Col. Cospus Christi C.P. 01359 Álvaro Obregón, CDMX</span>
+            </p>
+            <p class="text-xs sm:text-sm text-stone-600 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-clock text-berry-700"></i>
+              <span>Lunes a Domingo: 10:00 AM – 9:00 PM</span>
+            </p>
+          </div>
+          <!-- Mapa de Google Maps (Iframe) -->
+          <div class="w-full h-48 bg-stone-100 border-t border-stone-100">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d375.8523633177871!2d-99.2488280007952!3d19.36399145697933!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d20100716a9cc5%3A0x1eeb502a0b5e27c1!2sPastes%20y%20algo%20m%C3%A1s!5e0!3m2!1ses!2smx!4v1793159245762!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- SUCURSAL 2 (Ejemplo de segunda ubicación) -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col">
+          <div class="p-5 flex-grow">
+            <h3 class="font-serif text-xl font-bold text-berry-800 mb-2">Sucursal Av Tamaulipas (Pueblo de Santa Lucía)</h3>
+            <p class="text-xs sm:text-sm text-stone-600 mb-3 flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-berry-700 mt-1"></i>
+              <span>Av. Tamaulipas 486, Pueblo de Santa Lucía  C.P. 01500 Álvaro Obregón, CDMX</span>
+            </p>
+            <p class="text-xs sm:text-sm text-stone-600 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-clock text-berry-700"></i>
+              <span>Lunes a Domingo: 11:00 AM – 8:30 PM</span>
+            </p>
+          </div>
+          <!-- Mapa de Google Maps (Iframe) -->
+          <div class="w-full h-48 bg-stone-100 border-t border-stone-100">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235.26604935297127!2d-99.25659888052746!3d19.35803068260458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d200c0201397fd%3A0x565d6d58d81f7e8c!2sAv.%20Tamaulipas%20486%2C%20Pueblo%20de%20Sta%20Luc%C3%ADa%2C%20%C3%81lvaro%20Obreg%C3%B3n%2C%2001500%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1793159476195!5m2!1ses-419!2smx" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+        <!-- SUCURSAL 3 (Ejemplo de segunda ubicación) -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-100 flex flex-col">
+          <div class="p-5 flex-grow">
+            <h3 class="font-serif text-xl font-bold text-berry-800 mb-2">Sucursal Colinas del Sur (2da Ampliación Presidentes)</h3>
+            <p class="text-xs sm:text-sm text-stone-600 mb-3 flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-berry-700 mt-1"></i>
+              <span>Hacienda de la Flor #36 2da Ampliación Presidentes C.P. 01299 Álvaro Obregón, CDMX</span>
+            </p>
+            <p class="text-xs sm:text-sm text-stone-600 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-clock text-berry-700"></i>
+              <span>Lunes a Domingo: 11:00 AM – 8:30 PM</span>
+            </p>
+          </div>
+          <!-- Mapa de Google Maps (Iframe) -->
+          <div class="w-full h-48 bg-stone-100 border-t border-stone-100">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.898533236039!2d-99.23209838804661!3d19.373545681817863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d20056c5c80bd5%3A0xe8659d83d3616304!2sHacienda%20de%20La%20Flor%2036%2C%202da%20Amp%20Presidentes%2C%20%C3%81lvaro%20Obreg%C3%B3n%2C%2001299%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1793159661387!5m2!1ses-419!2smx" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  <!-- SCRIPT PARA NAVEGACIÓN DE PESTAÑAS -->
+  <script>
+    function switchTab(tab) {
+      // Ocultar todas las secciones
+      document.querySelectorAll('.menu-section').forEach(sec => {
+        sec.classList.remove('show-section');
+        sec.classList.add('hide-section');
+      });
+
+      // Quitar estilos activos de todos los botones
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-berry-700', 'text-white', 'shadow-md');
+        btn.classList.add('text-stone-600', 'hover:bg-cream-100');
+      });
+
+      // Mostrar sección seleccionada y activar botón correspondiente
+      const targetSec = document.getElementById(`sec-${tab}`);
+      const targetBtn = document.getElementById(`btn-${tab}`);
+
+      if (targetSec && targetBtn) {
+        targetSec.classList.remove('hide-section');
+        targetSec.classList.add('show-section');
+
+        targetBtn.classList.remove('text-stone-600', 'hover:bg-cream-100');
+        targetBtn.classList.add('bg-berry-700', 'text-white', 'shadow-md');
+      }
+    }
+  </script>
+</body>
+</html>
